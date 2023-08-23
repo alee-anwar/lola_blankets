@@ -1,0 +1,246 @@
+<section class="reviews">
+  
+  <h1 class="h-1">{{ section.settings.h-1 }}</h1>
+  <div class="row-1">
+  
+    <div class="column-1">
+      <div class="img-div-1"> <img class="img-1" src="{{ section.settings.img-1 |img_url:'original' }}" alt=""> </div>
+    </div>
+<div class="column-1">
+  <p>{{ section.settings.p-1 }}</p>
+</div>
+    
+  </div>
+  <a class="reviews-btn" href="{{ section.settings.reviews-btn-link }}">{{ section.settings['reviews-btn'] }}</a>
+
+  <div class="row-2 gifts-manual-collection-{{ section.id }}">
+    {% for block in section.blocks %}
+    <div class="column-2">
+     
+      <div class="img-div-2"> <img class="img-2" src="{{ block.settings.img-2  |img_url:'original'}}" alt=""> </div>
+      <h2 class="h-2">{{ block.settings.h-2 }}</h2>
+      <h5 class="h-5">{{ block.settings.h-5 }}</h5>
+      <p class="p-2">{{ block.settings.p-2 }}</p>
+      <a class="reviews-btn" href="{{ block.settings.reviews-btn-link }}">{{ block.settings['reviews-btn'] }}</a>
+       
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+  .reviews{
+    text-align:center;
+    max-width:1200px;
+    margin: 50px auto;
+  }
+
+  .row-1{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+  
+ 
+.img-div-1{
+  max-width:120px;
+}
+  .img-1{
+    width:100%;
+    height:auto;
+    display:block;
+  }
+  .h-1{
+    margin-bottom:0;
+    
+  }
+  .h-2{
+    margin:0px 0px 5px 0px;
+    font-size:20px;
+  }
+  .h-5{
+    margin:0;
+    font-size:12px;
+  }
+  .p-2{
+    font-size:12px;
+    
+  }
+.reviews-btn{
+  color:black;
+  display:inline-block;
+}
+  .row-2{
+    display:flex;
+    justify-content:space-between;
+  }
+  .column-2{
+   max-width: 32% ;
+     
+   margin:10px 10px 0px 10px;
+    border:2px solid black;
+    padding:15px;
+  }
+ 
+  .img-div-2{
+    max-width: 120px;
+    margin: 20px auto 5px auto;
+}
+
+  .img-2{
+    width:100%;
+    height:auto;
+    display:block;
+  }
+@media(max-width:600px){
+  .column-1{
+    max-width:100%;
+    flex:100%;
+  }
+  .img-div-1{
+    margin:0 auto;
+  }
+}
+
+  
+</style>
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+    var backButton = '<img alt="Previous Arrow" src="https://cdn.shopify.com/s/files/1/2239/6447/files/Arrow_Left_1.png?v=1671218407" class="slick-prev slick-prev-2">';
+      var nextButton = '<img alt="Next Arrow" src="https://cdn.shopify.com/s/files/1/2239/6447/files/Arrow_Right_2.png?v=1671218031" class="slick-next slick-next-2">'
+
+        $('.gifts-manual-collection-{{ section.id }}').slick({
+        dots: false,
+        infinite: false,
+        prevArrow: backButton,
+        nextArrow: nextButton,
+        arrows: true,
+        cssEase: 'linear',
+        speed: 300,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 1,
+              infinite: true,
+              dots: false
+            }
+          },
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+          // You can unslick at a given breakpoint now by adding:
+          // settings: "unslick"
+          // instead of a settings object
+        ]
+        });
+      });
+ </script>
+
+
+
+
+{% schema %}
+  {
+    "name": "Section Reviews",
+    "settings": [
+         {
+"id": "h-1",
+"type": "text",
+"label": "Heading"
+},
+             {
+"id": "p-1",
+"type": "textarea",
+"label": "Description"
+},
+           {
+          "id": "img-1",
+          "type": "image_picker",
+          "label": "Image"
+        },
+     {
+"id": "reviews-btn-link",
+"type": "url",
+"label": "Button URL"
+},
+{
+"id": "reviews-btn",
+"type": "text",
+"label": "Button name"
+}
+    ],
+ "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "id": "img-2",
+          "type": "image_picker",
+          "label": "Image"
+        },
+             {
+"id": "h-2",
+"type": "text",
+"label": "Title"
+},  
+          {
+"id": "h-5",
+"type": "text",
+"label": "Title"
+},  
+           {
+"id": "p-2",
+"type": "textarea",
+"label": "Description"
+},     
+
+{
+"id": "reviews-btn-link",
+"type": "url",
+"label": "Button URL"
+},
+{
+"id": "reviews-btn",
+"type": "text",
+"label": "Button name"
+}
+   
+  
+      ]
+    }
+  ],
+ "presets": [
+{
+"name": "Reviews section",
+"category": "ADVANCED LAYOUT"
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

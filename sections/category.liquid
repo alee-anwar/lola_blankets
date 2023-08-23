@@ -1,0 +1,116 @@
+<section class="category">
+  <div class="category-row">
+    {% for block in section.blocks %}
+      
+      <div class="category-column">
+        <h2>{{ block.settings.title }}</h2>
+        <div class="image"> 
+       <img src="{{ block.settings.category-img |img_url: 'original' }}" alt="">
+          <div class="Category-btn">
+          <a class="category-btn" href="{{ block.settings.category-btn-link }}">{{ block.settings.category-btn }}</a>
+          </div>
+        </div>
+      </div>
+    
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+  .category-row{
+    display:flex;
+    justify-content:space-evenly;
+    flex-wrap:wrap;
+  }
+  .category-column{
+    max-width:30%;
+  }
+   .category{
+       max-width:1200px;
+    margin:50px auto;
+    text-align:center;
+   }
+  .image{
+    position:relative;
+  }
+  .Category-btn {
+    position:absolute;
+    bottom:10%;
+    left:50%;
+    transform: translate(-50%, -10%);
+  }
+  .category img{
+    width:100%;
+    height:auto;
+  }
+  .category-btn{
+    background-color:white;
+    color:black;
+    border:none;
+    border-radius:6px;
+    padding:20px;
+    text-decoration:none;
+    text-align:center;
+    
+  }
+  @media(max-width:768px){
+    .category-column{
+    max-width:100%;
+  }
+  }
+</style>
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Section category",
+    "settings": [],
+    
+ "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "id": "category-img",
+          "type": "image_picker",
+          "label": "Image"
+        },
+             {
+"id": "title",
+"type": "text",
+"label": "Title"
+},  
+
+{
+"id": "category-btn-link",
+"type": "url",
+"label": "Button URL"
+},
+{
+"id": "category-btn",
+"type": "text",
+"label": "Button name"
+}
+   
+  
+      ]
+    }
+  ],
+ "presets": [
+{
+"name": "Category section",
+"category": "ADVANCED LAYOUT"
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

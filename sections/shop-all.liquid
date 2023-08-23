@@ -1,0 +1,67 @@
+<section class="shop-all">
+  <h1 class="heading">{{ section.settings.heading }}</h1>
+  <a class="shop-btn" href="{{ section.settings.shop-btn-link }}">{{ section.settings.shop-btn }}</a>
+</section>
+
+<style>
+  .shop-btn{
+   color: black;
+    margin-top: 22px;
+    display: inline-block;
+  }
+  .shop-all{
+    text-align:center;
+    margin:50px;
+  }
+  .heading{
+    max-width:40%;
+    margin:auto;
+  }
+  @media(max-width:768px){
+    .heading{
+     max-width: 60%;
+    margin: auto;
+    }
+  }
+   @media(max-width:510px){
+    .heading{
+     max-width: 80%;
+    margin: auto;
+    }
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Section shop",
+    "settings": [
+         {
+"id": "heading",
+"type": "text",
+"label": "Heading"
+},
+     {
+"id": "shop-btn-link",
+"type": "url",
+"label": "Button URL"
+},
+{
+"id": "shop-btn",
+"type": "text",
+"label": "Button name"
+} 
+    ],
+"presets": [
+{
+"name": "shop all section",
+"category": "ADVANCED LAYOUT"
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

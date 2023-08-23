@@ -1,0 +1,90 @@
+<section class="specification">
+
+<div class="specification-row">
+
+{% for block in section.blocks %}
+  <div class="specification-column">
+ <div class="Specification-img"> <img class="specification-img" src="{{block.settings.specification-img | img_url:'original' }}" alt=""> </div>
+  <h2>{{ block.settings.h2 }}</h2>
+  <p>{{ block.settings.p }}</p>
+  </div>
+  {% endfor %}
+</div>
+  
+</section>
+
+<style>
+  .Specification-img{
+    max-width:75px;
+    margin:auto;
+  }
+  .specification-img{
+    width:100%;
+    height:auto;
+  }
+  .specification{
+    max-width:1200px;
+    margin:100px auto;
+    text-align:center;
+  }
+  
+  .specification-row{
+    display:flex;
+    justify-content:space-evenly;
+    flex-wrap:wrap;
+  }
+  .specification-column{
+    max-width:30%;
+  }
+  @media(max-width:768px){
+     .specification-column{
+    max-width:100%;
+  }
+  }
+</style>
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Section specification",
+    "settings": [],
+     "blocks": [
+    {
+      "type": "specification",
+      "name": "Specification",
+      "settings": [
+        {
+          "id": "specification-img",
+          "type": "image_picker",
+          "label": "Image"
+        },
+          {
+"id": "h2",
+"type": "text",
+"label": "Title"
+},
+        {
+"id": "p",
+"type": "textarea",
+"label": "Description"
+}
+      ]
+    }
+  ],
+ "presets": [
+{
+"name": "Specifications section",
+"category": "ADVANCED LAYOUT"
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

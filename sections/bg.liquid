@@ -1,0 +1,151 @@
+<section class="BG">
+  <div class="BG-img">
+    <img src="{{ section.settings.bg-img | img_url:'original'}}" alt="">
+    <div class="Para">
+      <div class="para">
+      
+      <h3 class="main-title1">{{ section.settings.h3 }}</h3>
+      <h1 class="main-title2">{{ section.settings['main-title'] }}</h1>
+      <p class="info"> {{ section.settings.info }}</p>
+      <a class="BG-btn" href="{{ section.settings.BG-btn-link }}">{{ section.settings['BG-btn'] }}</a>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+ 
+   .main-title2{
+  max-width: 60%;
+  margin: 0 auto;
+  }
+  .info{
+    font-size: 15px;
+    max-width: 70%;
+    margin: auto;
+  }
+
+  .BG-img{
+    position:relative;
+  }
+  .BG img{
+    width:100%;
+    height:auto;
+  }
+  .Para{
+    position:absolute;
+    top:50%;
+   right:40px;
+    transform:translate(-40px, -50%);
+   max-width:30%;
+  }
+  .para{
+     background-color:white;
+    color:black;
+    text-align:center;
+    padding:35px 0px;
+    
+  }
+  .BG-btn{
+    background-color:black;
+    color:white;
+    padding:10px 14px;
+    display:inline-block;
+    text-decoration:none;
+    border-radius:8px;
+    margin-top:10px;
+  }
+  @media(max-width:768px){
+    .Para{
+    position: unset;
+    max-width: 100%;
+    transform: translate(0px, 0px);
+    }
+    .BG-btn{
+      background-color:white;
+      color:black;
+       padding:10px 14px;
+    display:inline-block;
+    text-decoration:none;
+      border:2px solid black;
+    border-radius:8px;
+    }
+  }
+  @media(max-width:1024px){
+    .main-title{
+          font-size: 16px;
+    }
+    .main-title2{
+  max-width: 70%;
+  margin: 0 auto;
+   font-size:27px;
+  }
+    .info{
+       font-size: 12px;
+    max-width: 80%;
+    margin: auto;
+    }
+    
+ 
+   @media(max-width:900px){
+     .BG-btn{
+       font-size: 14px;
+     } 
+      .info{
+       font-size: 10px;
+    max-width: 100%;
+    margin: auto;
+    }
+   }
+</style>
+
+{% schema %}
+  {
+    "name": "Section BG",
+    "settings": [
+         {
+"id": "h3",
+"type": "text",
+"label": "Heading"
+},
+               {
+"id": "main-title",
+"type": "text",
+"label": "Heading"
+},
+             {
+"id": "info",
+"type": "textarea",
+"label": "Description"
+},
+           {
+          "id": "bg-img",
+          "type": "image_picker",
+          "label": "Image"
+        },
+     {
+"id": "BG-btn-link",
+"type": "url",
+"label": "Button URL"
+},
+{
+"id": "BG-btn",
+"type": "text",
+"label": "Button name"
+}
+    ],
+"presets": [
+{
+"name": "BG section",
+"category": "ADVANCED LAYOUT"
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

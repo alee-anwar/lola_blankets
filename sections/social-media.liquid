@@ -1,0 +1,175 @@
+<section class="social-media">
+  <div class="img-row">
+    <div class="img-column">
+      <div class="img1"> <img src="{{ section.settings.img1 | img_url:'original' }}"alt=> </div>
+    </div>
+     <div class="img-column">
+      <div class="img2"> <img src="{{ section.settings.img2 | img_url:'original'  }}"alt=> </div>
+    </div>
+  </div>
+<h1 class="h1">{{ section.settings.media-h1 }}</h1>
+
+
+  
+</section>
+<div class="carousel-2">
+  
+
+  <div class="slick-row-2 gifts-manual-collection-{{ section.id }}">
+    {% for block in section.blocks %}
+    <div class="slick-column-2">
+
+      
+     <img class="slickimg2"  src="{{ block.settings.slickimg2 | img_url:'original' }}" alt=""> 
+     
+       
+      
+    </div>
+      {% endfor %}
+  </div>
+
+</div>
+
+<style>
+  
+  .img-row{
+    display:flex;
+    justify-content:center;
+  }
+  .social-media img{
+    width:100%;
+    height: auto;
+  }
+  .social-media{
+    text-align:center;
+  }
+  .h1{
+    margin:0;
+  }
+  .img1{
+    max-width:50px;
+  }
+  .img2{
+    max-width:50px;
+  }
+  .slick-row-2{
+    display:flex;
+    justify-content:space-between;
+    
+  }
+  .slick-column-2{
+       max-width: 23%;
+       margin:10px 10px 0px 10px;
+     
+  }
+  .slickimg2{
+    width:100%;
+    height:auto;
+  }
+   .carousel-2{
+      max-width:1400px ;
+      margin:30px auto;
+     
+  }
+</style>
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+    var backButton = '<img alt="Previous Arrow" src="https://cdn.shopify.com/s/files/1/2239/6447/files/Arrow_Left_1.png?v=1671218407" class="slick-prev slick-prev-2">';
+      var nextButton = '<img alt="Next Arrow" src="https://cdn.shopify.com/s/files/1/2239/6447/files/Arrow_Right_2.png?v=1671218031" class="slick-next slick-next-2">'
+
+        $('.gifts-manual-collection-{{ section.id }}').slick({
+        dots: false,
+        infinite: true,
+        prevArrow: backButton,
+        nextArrow: nextButton,
+        arrows: false,
+        cssEase: 'linear',
+        speed: 300,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 4,
+              slidesToScroll: 1,
+              infinite: true,
+              dots: false
+            }
+          },
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1.25,
+              slidesToScroll: 1
+            }
+          }
+          // You can unslick at a given breakpoint now by adding:
+          // settings: "unslick"
+          // instead of a settings object
+        ]
+        });
+      });
+ </script>
+
+{% schema %}
+   {
+    "name": "Carousel-2",
+    "settings": [
+          {
+"id": "media-h1",
+"type": "text",
+"label": "Title"
+},
+          {
+          "id": "img1",
+          "type": "image_picker",
+          "label": "Image"
+        },
+          {
+          "id": "img2",
+          "type": "image_picker",
+          "label": "Image"
+        }
+      
+    ],
+  "blocks": [
+    {
+      "type": "carousel",
+      "name": "Carousel",
+      "settings": [
+        {
+          "id": "slickimg2",
+          "type": "image_picker",
+          "label": "Image"
+        }
+
+ 
+      ]
+    }
+  ],
+ "presets": [
+{
+"name": "Carousel section 2",
+"category": "ADVANCED LAYOUT"
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

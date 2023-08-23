@@ -1,0 +1,251 @@
+<div class="section-slick">
+  <h1 class="section-slick-h1">{{ section.settings.section-h1 }}</h1>
+  <a class="reviews-btn" href="{{ section.settings.reviews-btn-link }}">{{ section.settings['reviews-btn'] }}</a>
+  <div class="Row gifts-manual-collection-{{ section.id }}">
+     {% for product in section.settings.collection1.products %} 
+    <div class="Column">
+        {% render 'card-product',
+              card_product: product,
+              media_aspect_ratio: section.settings.image_ratio,
+              image_shape: section.settings.image_shape,
+              show_secondary_image: section.settings.show_secondary_image,
+              show_vendor: section.settings.show_vendor,
+              show_rating: section.settings.show_rating,
+              show_quick_add: section.settings.enable_quick_add,
+              section_id: section.id
+            %}
+      
+    </div>
+    {% endfor %}
+  </div>
+  
+</div>
+
+
+<style>
+.section-slick-h1{
+  margin:9px;
+}
+.Row{
+  display:flex;
+  justify-content:flex-start;
+  flex-wrap:wrap;
+  column-gap:50px;
+
+}
+  .Column{
+    max-width:32%;
+  }
+  .section-slick{
+    text-align:center;
+    max-width:1300px;
+    margin :30px auto;
+  }
+
+  .slick-next-2{
+    width:40px;
+    height:auto;
+  }
+  .slick-prev-2{
+    width:40px;
+    height:auto;
+    z-index:1;
+  }
+
+  @media(max-width:1350px){
+    .slick-prev-products{
+      
+      left:10px;
+      
+    }
+    .slick-next-products{
+      
+      right:10px;
+      
+    }
+  }
+
+</style>
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+    var backButton = '<img alt="Previous Arrow" src="https://cdn.shopify.com/s/files/1/2239/6447/files/Arrow_Left_1.png?v=1671218407" class="slick-prev slick-prev-2 slick-prev-products">';
+      var nextButton = '<img alt="Next Arrow" src="https://cdn.shopify.com/s/files/1/2239/6447/files/Arrow_Right_2.png?v=1671218031" class="slick-next slick-next-2 slick-next-products">'
+
+        $('.gifts-manual-collection-{{ section.id }}').slick({
+        dots: false,
+        infinite: false,
+        prevArrow: backButton,
+        nextArrow: nextButton,
+        arrows: true,
+        cssEase: 'linear',
+        speed: 300,
+        slidesToShow: 3.1,
+        slidesToScroll: 1,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 1,
+              infinite: true,
+              dots: false
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1.5,
+              slidesToScroll: 1
+            }
+          }
+          // You can unslick at a given breakpoint now by adding:
+          // settings: "unslick"
+          // instead of a settings object
+        ]
+        });
+      });
+ </script>
+
+
+{% schema %}
+  {
+    "name": "Collection Section",
+    "settings": [
+        {
+"id": "collection1",
+"type": "collection",
+"label": "Collection"
+},
+              {
+"id": "section-h1",
+"type": "text",
+"label": "Heading"
+},
+          {
+"id": "reviews-btn-link",
+"type": "url",
+"label": "Button URL"
+},
+{
+"id": "reviews-btn",
+"type": "text",
+"label": "Button name"
+},
+      
+    {
+      "type": "select",
+      "id": "image_shape",
+      "options": [
+        {
+          "value": "default",
+          "label": "t:sections.all.image_shape.options__1.label"
+        },
+        {
+          "value": "arch",
+          "label": "t:sections.all.image_shape.options__2.label"
+        },
+        {
+          "value": "blob",
+          "label": "t:sections.all.image_shape.options__3.label"
+        },
+        {
+          "value": "chevronleft",
+          "label": "t:sections.all.image_shape.options__4.label"
+        },
+        {
+          "value": "chevronright",
+          "label": "t:sections.all.image_shape.options__5.label"
+        },
+        {
+          "value": "diamond",
+          "label": "t:sections.all.image_shape.options__6.label"
+        },
+        {
+          "value": "parallelogram",
+          "label": "t:sections.all.image_shape.options__7.label"
+        },
+        {
+          "value": "round",
+          "label": "t:sections.all.image_shape.options__8.label"
+        }
+      ],
+      "default": "default",
+      "label": "t:sections.all.image_shape.label",
+      "info": "t:sections.all.image_shape.info"
+    },
+          {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "t:sections.featured-collection.settings.show_secondary_image.label"
+    },
+        {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "t:sections.featured-collection.settings.show_vendor.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "t:sections.featured-collection.settings.show_rating.label",
+      "info": "t:sections.featured-collection.settings.show_rating.info"
+    },
+        {
+      "type": "checkbox",
+      "id": "enable_quick_add",
+      "default": false,
+      "label": "t:sections.featured-collection.settings.enable_quick_buy.label"
+    },
+      
+      
+      
+      {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.featured-collection.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.featured-collection.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.featured-collection.settings.image_ratio.options__3.label"
+        }
+      ],
+      "default": "adapt",
+      "label": "t:sections.featured-collection.settings.image_ratio.label"
+    }
+      
+ 
+    ],
+         "presets": [
+{
+"name": "collection section",
+"category": "ADVANCED LAYOUT"
+}
+]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
